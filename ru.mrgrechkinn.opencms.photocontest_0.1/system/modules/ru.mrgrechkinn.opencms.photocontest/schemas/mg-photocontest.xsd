@@ -1,6 +1,7 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
 
 	<xsd:include schemaLocation="opencms://opencms-xmlcontent.xsd"/>
+    <xsd:include schemaLocation="opencms://system/modules/ru.mrgrechkinn.opencms.photocontest/schemas/nested/mg-photocontest-image.xsd" />
 
 	<xsd:element name="mg-photocontest-schemas" type="OpenCmsMg-photocontest-schemas"/>
 
@@ -14,7 +15,7 @@
 		<xsd:sequence>
 			<xsd:element name="Title" type="OpenCmsString" />
 			<xsd:element name="Text" type="OpenCmsHtml" />
-			<xsd:element name="Image" type="OpenCmsVfsFile" />
+			<xsd:element name="Image" type="OpenCmsMgNestedImage" minOccurs="0" maxOccurs="unbounded" />
 		</xsd:sequence>
 		<xsd:attribute name="language" type="OpenCmsLocale" use="required"/>
 	</xsd:complexType>
@@ -27,8 +28,8 @@
 				<mapping element="Title" mapto="urlName" />
 			</mappings>
 			<defaults>
-				<default element="Title" value="%(key.bootstrap.imagegalleryshow.default.Title)" />
-				<default element="Text" value="%(key.bootstrap.imagegalleryshow.default.Text)" />
+				<default element="Title" value="%(key.mg-photocontest.default.Title)" />
+				<default element="Text" value="%(key.mg-photocontest.default.Text)" />
 			</defaults>
 			<layouts>
 				<layout element="Text" widget="HtmlWidget" configuration="downloadgallery" />

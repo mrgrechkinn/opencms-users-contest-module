@@ -4,7 +4,7 @@
 	<info>
 		<creator>Admin</creator>
 		<opencms_version>9.5.2</opencms_version>
-		<createdate>Wed, 16 Dec 2015 14:46:25 GMT</createdate>
+		<createdate>Wed, 16 Dec 2015 16:58:01 GMT</createdate>
 		<infoproject>Offline</infoproject>
 		<export_version>7</export_version>
 	</info>
@@ -343,6 +343,39 @@
 				<property>
 					<name>Title</name>
 					<value><![CDATA[Sample resource type schema]]></value>
+				</property>
+			</properties>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/schemas/nested</destination>
+			<type>folder</type>
+			<uuidstructure>9c0e289f-a415-11e5-bc19-40e23076d8ef</uuidstructure>
+			<datelastmodified>Wed, 16 Dec 2015 16:54:02 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Wed, 16 Dec 2015 16:54:02 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties/>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<source>system/modules/ru.mrgrechkinn.opencms.photocontest/schemas/nested/mg-photocontest-image.xsd</source>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/schemas/nested/mg-photocontest-image.xsd</destination>
+			<type>plain</type>
+			<uuidstructure>1500aee4-a416-11e5-bc19-40e23076d8ef</uuidstructure>
+			<uuidresource>1500aee5-a416-11e5-bc19-40e23076d8ef</uuidresource>
+			<datelastmodified>Wed, 16 Dec 2015 16:57:41 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Wed, 16 Dec 2015 16:57:25 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties>
+				<property>
+					<name>Title</name>
+					<value><![CDATA[Nested XSD for photocontest image]]></value>
 				</property>
 			</properties>
 			<relations/>
