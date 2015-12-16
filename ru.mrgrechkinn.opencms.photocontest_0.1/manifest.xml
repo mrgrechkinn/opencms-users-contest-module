@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<export>
+	<info>
+		<creator>Admin</creator>
+		<opencms_version>9.5.2</opencms_version>
+		<createdate>Wed, 16 Dec 2015 14:01:37 GMT</createdate>
+		<infoproject>Offline</infoproject>
+		<export_version>7</export_version>
+	</info>
+	<module>
+		<name>ru.mrgrechkinn.opencms.photocontest</name>
+		<nicename><![CDATA[OpenCms Add-On Module Package Photocontest]]></nicename>
+		<class/>
+		<description><![CDATA[This module contains photo contest functionality for OpenCms (c) 2015 by mrgrechkinn]]></description>
+		<version>0.1</version>
+		<authorname><![CDATA[mrgrechkinn]]></authorname>
+		<authoremail><![CDATA[mrgrechkinn@gmail.com]]></authoremail>
+		<datecreated/>
+		<userinstalled/>
+		<dateinstalled/>
+		<dependencies/>
+		<exportpoints>
+			<exportpoint uri="/system/modules/ru.mrgrechkinn.opencms.photocontest/classes/" destination="WEB-INF/classes/"/>
+		</exportpoints>
+		<resources>
+			<resource uri="/system/modules/ru.mrgrechkinn.opencms.photocontest/"/>
+		</resources>
+		<parameters/>
+	</module>
+	<files>
+		<file>
+			<destination>system</destination>
+			<type>folder</type>
+			<uuidstructure>f47e8f1b-8244-11e5-aa8d-40e23076d8ef</uuidstructure>
+			<datelastmodified>Tue, 03 Nov 2015 16:07:17 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Tue, 03 Nov 2015 16:07:17 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties/>
+			<relations/>
+			<accesscontrol>
+				<accessentry>
+					<uuidprincipal>ROLE.WORKPLACE_USER</uuidprincipal>
+					<flags>514</flags>
+					<permissionset>
+						<allowed>1</allowed>
+						<denied>0</denied>
+					</permissionset>
+				</accessentry>
+			</accesscontrol>
+		</file>
+		<file>
+			<destination>system/modules</destination>
+			<type>folder</type>
+			<uuidstructure>f601fb07-8244-11e5-aa8d-40e23076d8ef</uuidstructure>
+			<datelastmodified>Tue, 03 Nov 2015 16:07:20 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Tue, 03 Nov 2015 16:07:20 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties/>
+			<relations/>
+			<accesscontrol>
+				<accessentry>
+					<uuidprincipal>ROLE.WORKPLACE_USER</uuidprincipal>
+					<flags>514</flags>
+					<permissionset>
+						<allowed>5</allowed>
+						<denied>0</denied>
+					</permissionset>
+				</accessentry>
+			</accesscontrol>
+		</file>
+		<file>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest</destination>
+			<type>folder</type>
+			<uuidstructure>7b3b5f15-a3fd-11e5-ab10-40e23076d8ef</uuidstructure>
+			<datelastmodified>Wed, 16 Dec 2015 14:01:19 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Wed, 16 Dec 2015 14:01:19 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties/>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/classes</destination>
+			<type>folder</type>
+			<uuidstructure>7b50e2f1-a3fd-11e5-ab10-40e23076d8ef</uuidstructure>
+			<datelastmodified>Wed, 16 Dec 2015 14:01:19 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Wed, 16 Dec 2015 14:01:19 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties/>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/classes/ru</destination>
+			<type>folder</type>
+			<uuidstructure>7b52b7b3-a3fd-11e5-ab10-40e23076d8ef</uuidstructure>
+			<datelastmodified>Wed, 16 Dec 2015 14:01:19 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Wed, 16 Dec 2015 14:01:19 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties/>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/classes/ru/mrgrechkinn</destination>
+			<type>folder</type>
+			<uuidstructure>7b548c75-a3fd-11e5-ab10-40e23076d8ef</uuidstructure>
+			<datelastmodified>Wed, 16 Dec 2015 14:01:19 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Wed, 16 Dec 2015 14:01:19 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties/>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/classes/ru/mrgrechkinn/opencms</destination>
+			<type>folder</type>
+			<uuidstructure>7b56af57-a3fd-11e5-ab10-40e23076d8ef</uuidstructure>
+			<datelastmodified>Wed, 16 Dec 2015 14:01:19 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Wed, 16 Dec 2015 14:01:19 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties/>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/classes/ru/mrgrechkinn/opencms/photocontest</destination>
+			<type>folder</type>
+			<uuidstructure>7b58d239-a3fd-11e5-ab10-40e23076d8ef</uuidstructure>
+			<datelastmodified>Wed, 16 Dec 2015 14:01:19 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Wed, 16 Dec 2015 14:01:19 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties/>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/elements</destination>
+			<type>folder</type>
+			<uuidstructure>7b48a589-a3fd-11e5-ab10-40e23076d8ef</uuidstructure>
+			<datelastmodified>Wed, 16 Dec 2015 14:01:19 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Wed, 16 Dec 2015 14:01:19 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties/>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/formatters</destination>
+			<type>folder</type>
+			<uuidstructure>7b4ac86b-a3fd-11e5-ab10-40e23076d8ef</uuidstructure>
+			<datelastmodified>Wed, 16 Dec 2015 14:01:19 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Wed, 16 Dec 2015 14:01:19 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties/>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/resources</destination>
+			<type>folder</type>
+			<uuidstructure>7b4f0e2f-a3fd-11e5-ab10-40e23076d8ef</uuidstructure>
+			<datelastmodified>Wed, 16 Dec 2015 14:01:19 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Wed, 16 Dec 2015 14:01:19 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties/>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/schemas</destination>
+			<type>folder</type>
+			<uuidstructure>7b4d125d-a3fd-11e5-ab10-40e23076d8ef</uuidstructure>
+			<datelastmodified>Wed, 16 Dec 2015 14:01:19 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Wed, 16 Dec 2015 14:01:19 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties/>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/templates</destination>
+			<type>folder</type>
+			<uuidstructure>7b45e667-a3fd-11e5-ab10-40e23076d8ef</uuidstructure>
+			<datelastmodified>Wed, 16 Dec 2015 14:01:19 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Wed, 16 Dec 2015 14:01:19 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties/>
+			<relations/>
+			<accesscontrol/>
+		</file>
+	</files>
+</export>
