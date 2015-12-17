@@ -70,7 +70,7 @@ String getNavigationList(String path, CmsJspNavBuilder nav, CmsJspActionElement 
         	
         	result.append("<li class=\"search-block\">");
         	result.append("<form action=\"" + cms.link("/ru/" + "search.html")  + "\" method=\"post\" id=\"search\">");        	
-        	result.append("<span id=\"searchlink\"><img src=\"" +cms.link("/portal/opencms/system/modules/ru.onemanteam.opencms.modules.portal/resources/css/img/zoom.png") + "\" alt=\"\"></span>");
+        	result.append("<span id=\"searchlink\"><img src=\"" +cms.link("/system/modules/ru.onemanteam.opencms.modules.portal/resources/css/img/zoom.png") + "\" alt=\"\"></span>");
         	result.append("<input type=\"search\" name=\"query\" >");
         	//result.append("</span><input type=\"search\" name=\"query\">");
         	result.append("</form></li>"); 
