@@ -30,6 +30,29 @@
 			<resource uri="/system/workplace/resources/filetypes/portal-event.gif"/>
 		</resources>
 		<parameters/>
+        <resourcetypes>
+            <type class="org.opencms.file.types.CmsResourceTypeXmlContent" name="news" id="25">
+                <properties>
+                    <property>
+                        <name>content-conversion</name>
+                        <value type="shared"><![CDATA[cleanup;xhtml]]></value>
+                    </property>
+                    <property>
+                        <name>template-elements</name>
+                       <value type="shared"><![CDATA[/system/modules/ru.onemanteam.opencms.modules.portal/templates/news_single.jsp]]></value>
+                    </property>
+                </properties>
+                <param name="schema">/system/modules/ru.onemanteam.opencms.modules.portal/schemas/news.xsd</param>
+            </type>
+        </resourcetypes>
+        <explorertypes>
+            <explorertype name="news" key="fileicon.news" icon="portal-news.gif" reference="xmlcontent">
+                <newresource page="structurecontent" uri="newresource_xmlcontent.jsp?newresourcetype=news" order="15" autosetnavigation="false" autosettitle="false" info="desc.portal-news"/>
+                <accesscontrol>
+                    <accessentry principal="ROLE.WORKPLACE_USER" permissions="+r+v+w+c"/>
+                </accesscontrol>
+            </explorertype>
+        </explorertypes>
 	</module>
 	<files>
 		<file>

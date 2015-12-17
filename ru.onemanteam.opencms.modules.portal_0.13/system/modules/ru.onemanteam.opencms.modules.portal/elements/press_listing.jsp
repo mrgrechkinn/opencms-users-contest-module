@@ -56,8 +56,8 @@ if ("/ru/".equals(newsFolder))
 
 
 
-//I_CmsXmlContentContainer containerTmp = cms.contentload("allInFolderPriorityDateDesc", newsFolder + "news_${number}.html|news|10000", locale, true);
-int resultNum = 0;//containerTmp.getCollectorResult().size();
+I_CmsXmlContentContainer containerTmp = cms.contentload("allInFolderPriorityDateDesc", newsFolder + "news_${number}.html|news|10000", locale, true);
+int resultNum = containerTmp.getCollectorResult().size();
 
 boolean indexPage = false;
 int pageSize = 10;
@@ -95,7 +95,7 @@ container.setLocale(locale.toString());
 container.setPageIndex(pageIndex + "");
 container.setPageSize((resultNum < pageSize ? resultNum : pageSize) + "");
 container.setParam(newsFolder + "news_${number}.html|news|10000");
-//container.doStartTag();
+container.doStartTag();
 boolean firstRun = true;
 boolean isMoreContent = true;
 
