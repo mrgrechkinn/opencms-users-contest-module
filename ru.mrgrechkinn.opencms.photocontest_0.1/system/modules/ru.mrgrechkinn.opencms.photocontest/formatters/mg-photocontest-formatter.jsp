@@ -1,59 +1,109 @@
- <jsp:useBean id="cmsbean" class="org.opencms.jsp.CmsJspBean">
- <% cmsbean.init(pageContext, request, response); %>
- </jsp:useBean>
-<%@ page import="java.io.*,java.util.*, javax.servlet.*" %>
-<%@ page import="javax.servlet.http.*" %>
-<%@ page import="org.apache.commons.fileupload.*" %>
-<%@ page import="org.apache.commons.fileupload.disk.*" %>
-<%@ page import="org.apache.commons.fileupload.servlet.*" %>
-<%@ page import="org.apache.commons.io.output.*" %>
-<%@page buffer="none" session="false" trimDirectiveWhitespaces="true" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" session="false" %>
+<%@ page import="java.io.*, java.lang.*, java.util.*, java.text.*" %>
+<%@ page import="javax.servlet.*, javax.servlet.http.*" %>
+<%@ page import="org.opencms.*, org.opencms.main.*,
+org.opencms.flex.*, org.opencms.jsp.*, org.opencms.file.*,
+org.opencms.file.types.*" %>
+<%@ page import="org.apache.commons.lang.*" %>
+<%@ page import="org.apache.commons.fileupload.*,
+org.apache.commons.fileupload.disk.*,
+org.apache.commons.fileupload.servlet.*" %>
 <%@ taglib prefix="cms" uri="http://www.opencms.org/taglib/cms" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page import="java.util.*,org.opencms.jsp.*,org.opencms.workplace.explorer.*" %>
 <%
 
-ServletContext context = pageContext.getServletContext();
-String contentType = request.getContentType();
+if (request.getMethod().equals("POST")) {
 
-         String str = "test";
-         //if (contentType != null && (contentType.indexOf("multipart/form-data") >= 0)) {
-             CmsJspActionElement cms2 = new CmsJspActionElement(pageContext, request,
-             response);
-             CmsNewResourceUpload upload2 = new CmsNewResourceUpload(cms2);
-             //upload2.setParamUploadFile(str) ;
-                      String allParams = upload2.allParamsAsRequest();
+FileItemFactory factory = new DiskFileItemFactory();
+ServletFileUpload upload = new ServletFileUpload(factory);
 
-             System.out.println("UpLoadFile"+ upload2.getParamUploadFile());
-            
-             upload2.setParamUploadFolder("/sites/default/overview");
-             upload2.setParamNewResourceName("titi.jpg") ;
-             upload2.setParamUploadError("Error while Uploading") ;
-             upload2.setParamUnzipFile("false") ;
-             String str1=upload2.getParamUploadFile() ;
-             System.out.println(str1);
-             System.out.println(upload2.getParamResource());
-             upload2.actionUpload() ;
-             System.out.println(upload2.getParamResource());
-                Map<String, String> p = new HashMap<String, String>();
-             System.out.println(allParams);
-             for(String s : allParams.split("&")) {
-                 String[] splited = s.split("=");
-                 p.put(splited[0], splited[1]);
-             }
-             System.out.println( p.get("path"));
-             String extension = "";
-             int i = upload2.getParamResource().lastIndexOf('.');
-             if (i > 0) {
-                 extension = upload2.getParamResource().substring(i+1);
-             }
-             cmsbean.getCmsObject().moveResource(upload2.getParamResource(), p.get("path") + UUID.randomUUID().toString() +"." +extension);
-      //   }
+List<FileItem> items = null;
 
- 
- %>
+try {
+    items = upload.parseRequest(request);
+} catch (FileUploadException e) {
+    out.println("Error parsing request");
+    System.out.println(request.getRemoteAddr()+": Import: Error parsing request.");
+    return;
+}
+
+Iterator<FileItem> iter = items.iterator();
+
+String siteRoot = null;
+String folderId = null;
+String filename = null;
+byte[] bytes = null;
+
+while (iter.hasNext()) {
+    FileItem item = (FileItem) iter.next();
+
+    if (item.isFormField()) {
+
+        if (item.getFieldName().equals("folderId")) {
+        	folderId = item.getString();
+        }
+
+         if (item.getFieldName().equals("siteRoot")) {
+            siteRoot = item.getString();
+        } 
+
+    } else {
+        filename = item.getName();
+        bytes = item.get();
+    }
+}
+
+try {
+
+    CmsObject cms = OpenCms.initCmsObject("Guest");
+    cms.loginUser("Admin", "admin");
+
+    CmsProject project = cms.readProject("Offline");
+    cms.getRequestContext().setCurrentProject(project);
+
+    cms.getRequestContext().setSiteRoot(siteRoot);
+    
+
+    if (!cms.existsResource("/.content")) {
+        System.out.println("Creating /.content");
+        cms.createResource("/.content", CmsResourceTypeFolder.RESOURCE_TYPE_ID);
+    }
+
+    if (!cms.existsResource("/.content/mg-photocontest")) {
+        System.out.println("Creating /.content/mg-photocontest");
+        cms.createResource("/.content/mg-photocontest", CmsResourceTypeFolder.RESOURCE_TYPE_ID);
+    }
+
+    if (!cms.existsResource("/.content/mg-photocontest/"+folderId)) {
+        System.out.println("Creating /.content/mg-photocontest/"+folderId);
+        cms.createResource("/.content/mg-photocontest/"+folderId,
+CmsResourceTypeFolder.RESOURCE_TYPE_ID);
+    }
+
+
+    String newResname =
+cms.getRequestContext().getFileTranslator().translateResource("/.content/mg-photocontest/"+folderId +"/"
++ filename);
+    int resTypeId =
+OpenCms.getResourceManager().getDefaultTypeForName(filename).getTypeId();
+    cms.createResource(newResname, resTypeId, bytes, null);
+
+    //cms.unlockResource("/images/articles");
+    //cms.unlockResource("/images/articles/"+no_dossier);
+    //cms.unlockResource("/images/articles/"+no_dossier+"/"+no_article);
+
+   // cms.publishResource("/.content/mg-photocontest/"+folderId);
+    OpenCms.getPublishManager().publishResource(cms, "/.content/mg-photocontest/"+folderId);
+    OpenCms.getPublishManager().waitWhileRunning();
+
+} catch (Exception e) {
+    out.println("Error: "+e.getMessage() );
+}
+}
+%>
 <fmt:setLocale value="${cms.locale}" />
 <cms:bundle basename="ru.mrgrechkinn.opencms.photocontest.workplace">
 <cms:formatter var="content" val="value" rdfa="rdfa">
@@ -96,13 +146,14 @@ String contentType = request.getContentType();
         </c:when>
         <c:otherwise>
             <form method="post" enctype="multipart/form-data">
-                <input name="FirstName" value=""/>
+                <input name="FirstName" value="${cms.vfs.requestContext.siteRoot}.content/mg-photocontest/${content.id}"/>
                 <input type="file" name="filename" />
-                <input type="hidden" value="<c:out value="${cms.vfs.requestContext.siteRoot}${value.ImageFolder.stringValue}"/>" name="path"/>
+                <input type="hidden" value="<c:out value="${content.id}"/>" name="folderId"/>
+                <input type="hidden" value="<c:out value="${cms.vfs.requestContext.siteRoot}"/>" name="siteRoot"/>
                 <input type="submit" value="Загрузить" class="formbutton">
             </form>
             <c:set var="itemCount">3</c:set>
-            <c:set var="collectorParam">&fq=type:image&fq=parent-folders:"${cms.vfs.requestContext.siteRoot}${value.ImageFolder.stringValue}"&fq=con_locales:*&sort=path asc&rows=1000</c:set>
+            <c:set var="collectorParam">&fq=type:image&fq=parent-folders:"${cms.vfs.requestContext.siteRoot}.content/mg-photocontest/${content.id}"&fq=con_locales:*&sort=path asc&rows=1000</c:set>
             <cms:resourceload collector="byContext" param="${collectorParam}">
                 <cms:contentinfo var="info" />
                 <c:if test="${info.resultSize > 0}">
