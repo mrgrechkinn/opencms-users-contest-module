@@ -1,0 +1,33 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+	<xsd:include schemaLocation="opencms://opencms-xmlcontent.xsd"/>
+	<xsd:element name="Labels" type="OpenCmsLabels"/>
+
+	<xsd:complexType name="OpenCmsLabels">
+		<xsd:sequence>
+			<xsd:element name="Label" type="OpenCmsLabel" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="OpenCmsLabel">
+		<xsd:sequence>
+			<xsd:element name="copyRights" type="OpenCmsString" minOccurs="0" />
+			<xsd:element name="contactMail" type="OpenCmsString" minOccurs="0" />
+			<xsd:element name="NewsFolder" type="OpenCmsVfsFile" minOccurs="0" />
+			<xsd:element name="PressFolder" type="OpenCmsVfsFile" minOccurs="0" />
+			<xsd:element name="EventsFolder" type="OpenCmsVfsFile" minOccurs="0" />
+			<xsd:element name="MoreNewsText" type="OpenCmsString" minOccurs="0" />
+			<xsd:element name="TextReadMore" type="OpenCmsString" minOccurs="0" />
+			<xsd:element name="TextPrevious" type="OpenCmsString" minOccurs="0" />
+			<xsd:element name="TextNext" type="OpenCmsString" minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute name="language" type="OpenCmsLocale" use="required" />
+	</xsd:complexType>
+	   <xsd:annotation>
+        <xsd:appinfo>
+            <layouts>
+            </layouts>
+        </xsd:appinfo>
+    </xsd:annotation>
+    
+</xsd:schema>

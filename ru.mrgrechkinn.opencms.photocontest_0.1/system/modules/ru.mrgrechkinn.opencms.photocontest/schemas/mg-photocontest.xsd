@@ -15,6 +15,7 @@
 		<xsd:sequence>
 			<xsd:element name="Title" type="OpenCmsString" />
 			<xsd:element name="Text" type="OpenCmsHtml" />
+            <xsd:element name="ImageFolder" type="OpenCmsVfsFile" />
 			<xsd:element name="Image" type="OpenCmsMgNestedImage" minOccurs="0" maxOccurs="unbounded" />
 		</xsd:sequence>
 		<xsd:attribute name="language" type="OpenCmsLocale" use="required"/>
@@ -32,7 +33,7 @@
 				<default element="Text" value="%(key.mg-photocontest.default.Text)" />
 			</defaults>
 			<layouts>
-				<layout element="Text" widget="HtmlWidget" configuration="downloadgallery" />
+                <layout element="ImageFolder" widget="VfsFileWidget" configuration="{selectabletypes: 'folder'}}" />
 				<layout element="Image" widget="ImageGalleryWidget" configuration="{useformat:true}" />
 			</layouts>
 			<validationrules/>

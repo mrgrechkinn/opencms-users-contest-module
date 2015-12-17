@@ -1,0 +1,55 @@
+<%@ page language="java"
+    contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    import="org.opencms.jsp.*"
+    import="java.util.*"
+
+%><%
+
+CmsJspActionElement cms = new CmsJspActionElement(pageContext, request, response);
+
+cms.include("/system/modules/ru.onemanteam.opencms.modules.portal/resources/css/style.css");
+
+%>
+body {margin:0 10px}
+
+h4 {
+	font-size:1.2em;
+	border-bottom:1px solid #888;
+	padding-left:32px;
+
+	color:#000;
+	text-transform:uppercase;
+}
+
+
+
+strong {
+	font-weight:bold
+	}
+em {
+	font-style:italic
+	}
+ul,ol {
+	margin:10px 0 10px 20px;
+	}
+
+ol>li {
+	list-style-type: decimal;
+	}
+ul>li {
+	list-style-type: disc;
+	}
+
+.internal_blocks {
+	
+}
+
+.internal_blocks td{
+	padding: 0px;
+	margin: 0px;
+}
+
+.internal_blocks p {
+	padding: 0px 10px
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+	<xsd:include schemaLocation="opencms://opencms-xmlcontent.xsd"/>
+	<xsd:element name="Elements" type="OpenCmsElements"/>
+
+	<xsd:complexType name="OpenCmsElements">
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="Element" type="OpenCmsElement"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="OpenCmsElement">
+		<xsd:sequence>
+			<xsd:element name="ElementUrl" type="OpenCmsVarLink" minOccurs="1" />
+			<xsd:element name="ElementText" type="OpenCmsString" minOccurs="1" />
+		</xsd:sequence>
+		<xsd:attribute name="language" type="OpenCmsLocale" use="optional"/>
+	</xsd:complexType>
+	<xsd:annotation>
+		<xsd:appinfo>
+			<layouts/>
+		</xsd:appinfo>
+	</xsd:annotation>
+</xsd:schema>
