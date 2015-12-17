@@ -269,6 +269,42 @@
 			<relations/>
 			<accesscontrol/>
 		</file>
+        <file>
+            <source>system/modules/ru.mrgrechkinn.opencms.photocontest/elements/mg-photocontest-post.jsp</source>
+            <destination>system/modules/ru.mrgrechkinn.opencms.photocontest/elements/mg-photocontest-post.jsp</destination>
+            <type>jsp</type>
+            <datelastmodified>Mon, 03 Feb 2014 14:00:55 GMT</datelastmodified>
+            <userlastmodified>Admin</userlastmodified>
+            <datecreated>Wed, 16 Dec 2015 14:46:04 GMT</datecreated>
+            <usercreated>Admin</usercreated>
+            <flags>0</flags>
+            <properties>
+                <property type="shared">
+                    <name>export</name>
+                    <value><![CDATA[false]]></value>
+                </property>
+            </properties>
+            <relations/>
+            <accesscontrol/>
+        </file>
+        <file>
+            <source>system/modules/ru.mrgrechkinn.opencms.photocontest/elements/mg-photocontest-get.jsp</source>
+            <destination>system/modules/ru.mrgrechkinn.opencms.photocontest/elements/mg-photocontest-get.jsp</destination>
+            <type>jsp</type>
+            <datelastmodified>Mon, 03 Feb 2014 14:00:55 GMT</datelastmodified>
+            <userlastmodified>Admin</userlastmodified>
+            <datecreated>Wed, 16 Dec 2015 14:46:04 GMT</datecreated>
+            <usercreated>Admin</usercreated>
+            <flags>0</flags>
+            <properties>
+                <property type="shared">
+                    <name>export</name>
+                    <value><![CDATA[false]]></value>
+                </property>
+            </properties>
+            <relations/>
+            <accesscontrol/>
+        </file>
 		<file>
 			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/i18n</destination>
 			<type>folder</type>
@@ -358,26 +394,6 @@
 			<usercreated>Admin</usercreated>
 			<flags>0</flags>
 			<properties/>
-			<relations/>
-			<accesscontrol/>
-		</file>
-		<file>
-			<source>system/modules/ru.mrgrechkinn.opencms.photocontest/schemas/nested/mg-photocontest-image.xsd</source>
-			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/schemas/nested/mg-photocontest-image.xsd</destination>
-			<type>plain</type>
-			<uuidstructure>1500aee4-a416-11e5-bc19-40e23076d8ef</uuidstructure>
-			<uuidresource>1500aee5-a416-11e5-bc19-40e23076d8ef</uuidresource>
-			<datelastmodified>Wed, 16 Dec 2015 16:57:41 GMT</datelastmodified>
-			<userlastmodified>Admin</userlastmodified>
-			<datecreated>Wed, 16 Dec 2015 16:57:25 GMT</datecreated>
-			<usercreated>Admin</usercreated>
-			<flags>0</flags>
-			<properties>
-				<property>
-					<name>Title</name>
-					<value><![CDATA[Nested XSD for photocontest image]]></value>
-				</property>
-			</properties>
 			<relations/>
 			<accesscontrol/>
 		</file>

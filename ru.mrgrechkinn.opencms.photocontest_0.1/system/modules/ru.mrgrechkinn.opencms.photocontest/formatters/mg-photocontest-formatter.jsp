@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:choose>
-<c:when test="${pageContext.request.method=='POST'}">
+<c:when test="${pageContext.request.method=='POST' && not cms.element.inMemoryOnly}">
 <cms:include file="/system/modules/ru.mrgrechkinn.opencms.photocontest/elements/mg-photocontest-post.jsp" />
 </c:when>
 <c:otherwise>

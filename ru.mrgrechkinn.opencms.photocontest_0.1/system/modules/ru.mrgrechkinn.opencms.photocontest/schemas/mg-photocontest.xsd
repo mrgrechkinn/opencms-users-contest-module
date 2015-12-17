@@ -1,7 +1,6 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
 
 	<xsd:include schemaLocation="opencms://opencms-xmlcontent.xsd"/>
-    <xsd:include schemaLocation="opencms://system/modules/ru.mrgrechkinn.opencms.photocontest/schemas/nested/mg-photocontest-image.xsd" />
 
 	<xsd:element name="mg-photocontest-schemas" type="OpenCmsMg-photocontest-schemas"/>
 

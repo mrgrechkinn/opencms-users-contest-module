@@ -21,5 +21,21 @@
     <AutoEnabled>true</AutoEnabled>
     <Detail>true</Detail>
     <NestedContainers>false</NestedContainers>
+    <HeadIncludeCss>
+      <CssLink>
+        <link type="WEAK">
+          <target><![CDATA[/system/modules/com.alkacon.bootstrap.basics/resources/theme-unify/plugins/fancybox/source/jquery.fancybox.css]]></target>
+          <uuid>5d33facc-a1c8-4e16-83b2-7c88d736bb0a</uuid>
+        </link>
+      </CssLink>
+    </HeadIncludeCss>
+    <HeadIncludeJs>
+      <JavascriptLink>
+        <link type="WEAK">
+          <target><![CDATA[/system/modules/com.alkacon.bootstrap.basics/resources/theme-unify/plugins/fancybox/source/jquery.fancybox.pack.js]]></target>
+          <uuid>35d32afb-cca3-4c38-8a36-14d69888ff86</uuid>
+        </link>
+      </JavascriptLink>
+    </HeadIncludeJs>
   </NewFormatter>
 </NewFormatters>
