@@ -7,10 +7,41 @@
 <fmt:setLocale value="${cms.locale}" />
 <cms:bundle basename="ru.mrgrechkinn.opencms.photocontest.workplace">
 <cms:formatter var="content" val="value" rdfa="rdfa">
+<style type="text/css">
+    .photocontest .webform_wrapper {
+        width: 410px;
+    }
+    .photocontest .webform_wrapper .webform_field {
+        width: 200px;
+        margin-right: 5px;
+    }
+    .photocontest .webform_wrapper .webform_label {
+        width: 200px;
+        padding-top: 8px;
+    }
+    .photocontest .webform_wrapper .webform_field input {
+        padding: 9px 4px;
+        margin-bottom: 10px;
+    }
+    .photocontest .webform_wrapper .webform_label label {
+        font-weight: bold;
+    }
+    .photocontest .webform_wrapper .webform_button {
+        text-align: left;
+    }
+    .photocontest .webform_wrapper .webform_button div.webform_wrapper input.formbutton {
+        width: 130px;
+        height: 36px;
+    }
+</style>
 <c:choose>
     <c:when test="${param.n == 'true'}">
-    <div class="OpenCmsWebform">
-        <link rel="stylesheet" type="text/css" href="/portal/opencms/system/modules/com.alkacon.opencms.v8.formgenerator/resources/css/webform.css"><script type="text/javascript" src="/portal/opencms/system/modules/com.alkacon.opencms.v8.formgenerator/resources/js/subfields.js"></script><p>Третий опрос, тестовое сообщение</p>
+    <div class="OpenCmsWebform photocontest">
+        <link rel="stylesheet" type="text/css" href="/portal/opencms/system/modules/com.alkacon.opencms.v8.formgenerator/resources/css/webform.css">
+        <script type="text/javascript" src="/portal/opencms/system/modules/com.alkacon.opencms.v8.formgenerator/resources/js/subfields.js"></script>
+        <h3>${value.Title}</h3>
+        <hr/>
+        <p>${value.Text}</p>
         <form method="post" enctype="multipart/form-data">
         <div class="webform_wrapper">
             <input type="hidden" value="<c:out value="${content.id}"/>" name="folderId"/>
@@ -97,7 +128,9 @@
     });
 </script>
 
-    <div class="headline"><h2 ${rdfa.Title}>${value.Title}</h2></div>
+    <h3>${value.Title}</h3>
+    <hr/>
+    <p>${value.Text}</p>
     <c:choose>
         <c:when test="${cms.element.inMemoryOnly}">
             <div class="row"><div class="alert"><fmt:message key="bootstrap.imagegalleryshow.message.new" /></div></div>

@@ -28,12 +28,24 @@
           <uuid>5d33facc-a1c8-4e16-83b2-7c88d736bb0a</uuid>
         </link>
       </CssLink>
+      <CssLink>
+        <link type="WEAK">
+          <target><![CDATA[/system/modules/ru.onemanteam.opencms.modules.portal/resources/css/jquery.formstyler.css]]></target>
+          <uuid>dbb6743b-e006-4d8b-a721-f3dbbca1aa61</uuid>
+        </link>
+      </CssLink>
     </HeadIncludeCss>
     <HeadIncludeJs>
       <JavascriptLink>
         <link type="WEAK">
           <target><![CDATA[/system/modules/com.alkacon.bootstrap.basics/resources/theme-unify/plugins/fancybox/source/jquery.fancybox.pack.js]]></target>
           <uuid>35d32afb-cca3-4c38-8a36-14d69888ff86</uuid>
+        </link>
+      </JavascriptLink>
+      <JavascriptLink>
+        <link type="WEAK">
+          <target><![CDATA[/system/modules/ru.onemanteam.opencms.modules.portal/resources/js/jquery.formstyler.min.js]]></target>
+          <uuid>cac7d35a-0b56-4d82-953a-8ac1c25e4ce6</uuid>
         </link>
       </JavascriptLink>
     </HeadIncludeJs>
