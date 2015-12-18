@@ -3,12 +3,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="org.opencms.jsp.*" %>
+<% 
+  // Create a JSP action element
+  org.opencms.jsp.CmsJspActionElement cms = new CmsJspActionElement(pageContext, request, response);
 
+  HttpServletRequest req = (HttpServletRequest)cms.getRequest();
+
+  String ipAddress = req.getHeader("X-FORWARDED-FOR");
+  if (ipAddress == null) {
+      ipAddress = req.getRemoteAddr();
+  }
+  System.out.println("ipAddress:" + ipAddress);
+
+%>
 <fmt:setLocale value="${cms.locale}" />
 <cms:bundle basename="ru.mrgrechkinn.opencms.photocontest.workplace">
 <cms:formatter var="content" val="value" rdfa="rdfa">
 <c:choose>
     <c:when test="${param.n == 'true'}">
+    <%
+StringBuffer sb=new StringBuffer();
+for(int i=1;i<=5;i++)
+{
+    sb.append((char)(int)(Math.random()*79+23+7));
+}
+String cap=new String(sb);
+%>
     <div class="OpenCmsWebform photocontest">
         <style type="text/css">
             .photocontest .webform_wrapper {
@@ -58,10 +79,25 @@
         <h3 style="font-size: 18px; color:black;">${value.Title}</h3>
         <hr/>
         <p style="font-size: 16px; color:black;">${value.Text}</p>
-        <form method="post" enctype="multipart/form-data">
+        <script>
+        function validation(){
+            var c = document.forms ["f1"]["captcha"].value;
+            var c2 = document.forms ["f1"]["cap2"].value;
+            if(c == null||c == "")
+            {
+               alert ("Please Enter Captcha");
+               return false;
+            } else if (c != c2) {
+            	alert ("Not correct Captcha");
+                return false;
+            }
+        }
+        </script>
+        <form method="post" enctype="multipart/form-data" onsubmit="return validation()" name="f1">
         <div class="webform_wrapper">
             <input type="hidden" value="<c:out value="${content.id}"/>" name="folderId"/>
             <input type="hidden" value="<c:out value="${cms.vfs.requestContext.siteRoot}"/>" name="siteRoot"/>
+            <input type="hidden" name="cap2" value='<%=cap%>' readonly="readonly">
             <div class="webform_row">
                 <div class="webform_field">
                     <input type="text" name="firstName" id="firstName" value="">
@@ -104,6 +140,11 @@
             </div>
             <div class="webform_row">
                 <div class="webform_field">
+                  <div style="background-color: red; height: 50px; border-radius: 2px; padding-top: 15px;" onselectstart="return false" onmousedown="return false"><h2 style="text-align:center;"><s><i><font style="color:white;" face="casteller"><%=cap%></font></i></s></h2></div>
+                </div>
+            </div>
+            <div class="webform_row">
+                <div class="webform_field">
                     <input type="text" name="captcha" id="captcha" value="">
                 </div>
                 <div class="webform_label">
@@ -115,6 +156,7 @@
             </div>
         </div>
         </form>
+        
         <br style="clear:both;">
     </div>
     <script>
@@ -179,7 +221,7 @@
                 </div>
             </form>
             <c:set var="itemCount">3</c:set>
-            <c:set var="collectorParam">&fq=type:image&fq=parent-folders:"${cms.vfs.requestContext.siteRoot}/.content/mg-photocontest/${content.id}/"&fq=con_locales:*&sort=path asc&rows=1000</c:set>
+            <c:set var="collectorParam">&fq=type:image&fq=parent-folders:"${cms.vfs.requestContext.siteRoot}/.content/mg-photocontest/${content.id}/"&fq=pcEnabled_exact:true&fq=con_locales:*&sort=path asc&rows=1000</c:set>
             <cms:resourceload collector="byContext" param="${collectorParam}">
                 <cms:contentinfo var="info" />
                 <c:if test="${info.resultSize > 0}">
@@ -195,10 +237,11 @@
                             </div>
                         </a>
                         <div>
-                            <div>${res.property['pcFirstName']} ${res.property['pcLastName']}</div>
+                            <div style="font-weight: bold;">${res.property['pcFirstName']} ${res.property['pcLastName']}</div>
                             <div>${res.property['pcPicTitle']}</div>
                         </div>
-                        <div><img src="<cms:link>%(link.weak:/system/modules/ru.mrgrechkinn.opencms.photocontest/resources/pics/voted.png)</cms:link>"><div>Голосовать</div></div>
+                        <div style="cursor:pointer;"><img style="float:left; margin-right: 10px;" src="<cms:link>%(link.weak:/system/modules/ru.mrgrechkinn.opencms.photocontest/resources/pics/not_voted.png)</cms:link>"><div style="font-weight: bold; color: red; text-decoration: underline;">Голосовать</div></div>
+                        <%--<div><img style="float:left; margin-right: 10px;" src="<cms:link>%(link.weak:/system/modules/ru.mrgrechkinn.opencms.photocontest/resources/pics/voted.png)</cms:link>"><div style="font-weight: bold;">Голос учтен</div></div> --%>
                     </div>
 
                     <c:if test="${info.resultIndex % itemCount == 0 || info.lastResult}">

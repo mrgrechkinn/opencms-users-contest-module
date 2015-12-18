@@ -33,6 +33,7 @@ try {
     
      byte[] bytes = null;
      List<CmsProperty> properties = new ArrayList<CmsProperty>();
+     properties.add(new CmsProperty("pcEnabled", "true", null));
      while (iter.hasNext()) {
          FileItem item = (FileItem) iter.next();
     
