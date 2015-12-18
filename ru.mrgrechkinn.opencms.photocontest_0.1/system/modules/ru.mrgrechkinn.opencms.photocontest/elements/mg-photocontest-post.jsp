@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
 <%@ page import="java.io.*, java.lang.*, java.util.*, java.text.*" %>
 <%@ page import="javax.servlet.*, javax.servlet.http.*" %>
 <%@ page import="org.opencms.*, org.opencms.main.*, org.opencms.flex.*, org.opencms.jsp.*, org.opencms.file.*, org.opencms.file.types.*" %>
@@ -13,6 +14,7 @@ if (!request.getMethod().equals("POST")) {
 
 FileItemFactory factory = new DiskFileItemFactory();
 ServletFileUpload upload = new ServletFileUpload(factory);
+upload.setHeaderEncoding("UTF-8");
 List<FileItem> items = null;
 try {
     items = upload.parseRequest(request);
@@ -23,7 +25,6 @@ try {
      String folderId = null;
     
      //Form public fields
-     String firstName = null;
      String lastName = null;
      String email = null;
      String picTitle = null;
@@ -31,7 +32,7 @@ try {
      String captcha = null;
     
      byte[] bytes = null;
-    
+     List<CmsProperty> properties = new ArrayList<CmsProperty>();
      while (iter.hasNext()) {
          FileItem item = (FileItem) iter.next();
     
@@ -43,16 +44,16 @@ try {
                  siteRoot = item.getString();
              } 
              if (item.getFieldName().equals("firstName")) {
-                 firstName = item.getString();
+                 properties.add(new CmsProperty("pcFirstName", item.getString("UTF-8"), null));
              }
              if (item.getFieldName().equals("lastName")) {
-                 lastName = item.getString();
+            	 properties.add(new CmsProperty("pcLastName", item.getString("UTF-8"), null));
              }
              if (item.getFieldName().equals("email")) {
-                 email = item.getString();
+            	 properties.add(new CmsProperty("pcEmail", item.getString("UTF-8"), null));
              }
              if (item.getFieldName().equals("picTitle")) {
-                 picTitle = item.getString();
+            	 properties.add(new CmsProperty("pcPicTitle", item.getString("UTF-8"), null));
              }
              if (item.getFieldName().equals("captcha")) {
                  captcha = item.getString();
@@ -89,7 +90,7 @@ try {
                                                                                          + folderId + "/"
                                                                                          + filename);
          int resTypeId = OpenCms.getResourceManager().getDefaultTypeForName(filename).getTypeId();
-         cms.createResource(newResname, resTypeId, bytes, null);
+         cms.createResource(newResname, resTypeId, bytes, properties);
     
          OpenCms.getPublishManager().publishResource(cms, "/.content/mg-photocontest/" + folderId);
          OpenCms.getPublishManager().waitWhileRunning();

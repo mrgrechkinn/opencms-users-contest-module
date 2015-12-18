@@ -7,41 +7,57 @@
 <fmt:setLocale value="${cms.locale}" />
 <cms:bundle basename="ru.mrgrechkinn.opencms.photocontest.workplace">
 <cms:formatter var="content" val="value" rdfa="rdfa">
-<style type="text/css">
-    .photocontest .webform_wrapper {
-        width: 410px;
-    }
-    .photocontest .webform_wrapper .webform_field {
-        width: 200px;
-        margin-right: 5px;
-    }
-    .photocontest .webform_wrapper .webform_label {
-        width: 200px;
-        padding-top: 8px;
-    }
-    .photocontest .webform_wrapper .webform_field input {
-        padding: 9px 4px;
-        margin-bottom: 10px;
-    }
-    .photocontest .webform_wrapper .webform_label label {
-        font-weight: bold;
-    }
-    .photocontest .webform_wrapper .webform_button {
-        text-align: left;
-    }
-    .photocontest .webform_wrapper .webform_button div.webform_wrapper input.formbutton {
-        width: 130px;
-        height: 36px;
-    }
-</style>
 <c:choose>
     <c:when test="${param.n == 'true'}">
     <div class="OpenCmsWebform photocontest">
+        <style type="text/css">
+            .photocontest .webform_wrapper {
+                width: 410px;
+            }
+            .photocontest .webform_wrapper .webform_field {
+                width: 200px;
+                margin-right: 5px;
+            }
+            .photocontest .webform_wrapper .webform_label {
+                width: 200px;
+                padding-top: 8px;
+            }
+            .photocontest .webform_wrapper .webform_field input {
+                padding: 9px 4px;
+                margin-bottom: 10px;
+            }
+            .photocontest .webform_wrapper .webform_label label {
+                font-weight: bold;
+            }
+            .photocontest .webform_wrapper .webform_button {
+                text-align: left;
+            }
+            .photocontest .webform_wrapper .webform_button input.formbutton {
+                width: 130px;
+                height: 36px;
+                font-size: 16px;
+            }
+            .photocontest .webform_wrapper .jq-file {
+                width: 198px;
+                border-radius: 2px;
+            }
+            .photocontest .webform_wrapper .jq-file .jq-file__name {
+                border: 1px solid #888;
+                border-bottom-color: #888;
+                background: #fafbfb;
+            }
+            .photocontest .webform_wrapper .jq-file .jq-file__browse {
+                background: #ee3524;
+                box-shadow: none;
+                color: white;
+                text-shadow: none;
+            }
+        </style>
         <link rel="stylesheet" type="text/css" href="/portal/opencms/system/modules/com.alkacon.opencms.v8.formgenerator/resources/css/webform.css">
         <script type="text/javascript" src="/portal/opencms/system/modules/com.alkacon.opencms.v8.formgenerator/resources/js/subfields.js"></script>
-        <h3>${value.Title}</h3>
+        <h3 style="font-size: 18px; color:black;">${value.Title}</h3>
         <hr/>
-        <p>${value.Text}</p>
+        <p style="font-size: 16px; color:black;">${value.Text}</p>
         <form method="post" enctype="multipart/form-data">
         <div class="webform_wrapper">
             <input type="hidden" value="<c:out value="${content.id}"/>" name="folderId"/>
@@ -101,15 +117,19 @@
         </form>
         <br style="clear:both;">
     </div>
+    <script>
+        jQuery(function() {
+            jQuery('input, select').styler();
+        });
+    </script>
     </c:when>
     <c:otherwise>
 <%-- Gallery --%>
-<div class="gallery-page">
+<div class="gallery-page photocontest">
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
         jQuery(".fancybox-button").fancybox({
-            groupAttr: 'data-rel',
             prevEffect: 'none',
             nextEffect: 'none',
             closeBtn: true,
@@ -127,10 +147,20 @@
             });
     });
 </script>
+<style type="text/css">
+    .photocontest .webform_wrapper .webform_button {
+        text-align: left;
+    }
+    .photocontest .webform_wrapper .webform_button input.formbutton {
+        width: 130px;
+        height: 36px;
+        font-size: 16px;
+    }
+</style>
 
-    <h3>${value.Title}</h3>
+    <h3 style="font-size: 18px; color:black;">${value.Title}</h3>
     <hr/>
-    <p>${value.Text}</p>
+    <p style="font-size: 16px; color:black;">${value.Text}</p>
     <c:choose>
         <c:when test="${cms.element.inMemoryOnly}">
             <div class="row"><div class="alert"><fmt:message key="bootstrap.imagegalleryshow.message.new" /></div></div>
@@ -140,6 +170,14 @@
             ${cms.enableReload}
         </c:when>
         <c:otherwise>
+            <form method="get">
+                <div class="webform_wrapper">
+                    <div class="webform_button">
+                    <input type="hidden" value="true" name="n"> 
+                    <input type="submit" value="Учавствовать" class="formbutton submitbutton">  
+                    </div>
+                </div>
+            </form>
             <c:set var="itemCount">3</c:set>
             <c:set var="collectorParam">&fq=type:image&fq=parent-folders:"${cms.vfs.requestContext.siteRoot}/.content/mg-photocontest/${content.id}/"&fq=con_locales:*&sort=path asc&rows=1000</c:set>
             <cms:resourceload collector="byContext" param="${collectorParam}">
@@ -151,11 +189,16 @@
                     </c:if>
                     <div class="${cms:lookup(itemCount, '1:col-xs-12|2:col-sm-6|3:col-sm-4|4:col-md-3 col-sm-6|5:col-md-2 col-sm-6|6:col-md-2 col-sm-4')}">
                         <a class="thumbnail fancybox-button zoomer" data-rel="fancybox-button" title="<c:out value="${res.property['Title']}" />" href="<cms:link>${res.filename}</cms:link>">
-                            <div class="overlay-zoom">  
+                            <div class="overlay-zoom">
                                 <cms:img alt="${res.property['Title']}" title="${res.property['Title']}" src="${res.filename}" scaleType="2" scaleColor="transparent" scaleQuality="75" noDim="true" width="720" height="450" cssclass="img-responsive" />
-                                <div class="zoom-icon"></div>                   
-                            </div>                                              
-                        </a>                                                                                    
+                                <div class="zoom-icon"></div>
+                            </div>
+                        </a>
+                        <div>
+                            <div>${res.property['pcFirstName']} ${res.property['pcLastName']}</div>
+                            <div>${res.property['pcPicTitle']}</div>
+                        </div>
+                        <div><img src="<cms:link>%(link.weak:/system/modules/ru.mrgrechkinn.opencms.photocontest/resources/pics/voted.png)</cms:link>"><div>Голосовать</div></div>
                     </div>
 
                     <c:if test="${info.resultIndex % itemCount == 0 || info.lastResult}">
