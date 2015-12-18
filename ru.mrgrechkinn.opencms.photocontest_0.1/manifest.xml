@@ -4,7 +4,7 @@
 	<info>
 		<creator>Admin</creator>
 		<opencms_version>9.5.2</opencms_version>
-		<createdate>Wed, 16 Dec 2015 16:58:01 GMT</createdate>
+		<createdate>Fri, 18 Dec 2015 01:43:22 GMT</createdate>
 		<infoproject>Offline</infoproject>
 		<export_version>7</export_version>
 	</info>
@@ -205,6 +205,46 @@
 			<accesscontrol/>
 		</file>
 		<file>
+			<source>system/modules/ru.mrgrechkinn.opencms.photocontest/elements/mg-photocontest-get.jsp</source>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/elements/mg-photocontest-get.jsp</destination>
+			<type>jsp</type>
+			<uuidstructure>ae3943d3-a516-11e5-b30b-40e23076d8ef</uuidstructure>
+			<uuidresource>ae3943d4-a516-11e5-b30b-40e23076d8ef</uuidresource>
+			<datelastmodified>Fri, 18 Dec 2015 01:38:26 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Wed, 16 Dec 2015 14:46:04 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties>
+				<property type="shared">
+					<name>export</name>
+					<value><![CDATA[false]]></value>
+				</property>
+			</properties>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<source>system/modules/ru.mrgrechkinn.opencms.photocontest/elements/mg-photocontest-post.jsp</source>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/elements/mg-photocontest-post.jsp</destination>
+			<type>jsp</type>
+			<uuidstructure>ae3720f0-a516-11e5-b30b-40e23076d8ef</uuidstructure>
+			<uuidresource>ae3720f1-a516-11e5-b30b-40e23076d8ef</uuidresource>
+			<datelastmodified>Fri, 18 Dec 2015 00:08:28 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Wed, 16 Dec 2015 14:46:04 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties>
+				<property type="shared">
+					<name>export</name>
+					<value><![CDATA[false]]></value>
+				</property>
+			</properties>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
 			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/formatters</destination>
 			<type>folder</type>
 			<uuidstructure>7b4ac86b-a3fd-11e5-ab10-40e23076d8ef</uuidstructure>
@@ -269,42 +309,6 @@
 			<relations/>
 			<accesscontrol/>
 		</file>
-        <file>
-            <source>system/modules/ru.mrgrechkinn.opencms.photocontest/elements/mg-photocontest-post.jsp</source>
-            <destination>system/modules/ru.mrgrechkinn.opencms.photocontest/elements/mg-photocontest-post.jsp</destination>
-            <type>jsp</type>
-            <datelastmodified>Mon, 03 Feb 2014 14:00:55 GMT</datelastmodified>
-            <userlastmodified>Admin</userlastmodified>
-            <datecreated>Wed, 16 Dec 2015 14:46:04 GMT</datecreated>
-            <usercreated>Admin</usercreated>
-            <flags>0</flags>
-            <properties>
-                <property type="shared">
-                    <name>export</name>
-                    <value><![CDATA[false]]></value>
-                </property>
-            </properties>
-            <relations/>
-            <accesscontrol/>
-        </file>
-        <file>
-            <source>system/modules/ru.mrgrechkinn.opencms.photocontest/elements/mg-photocontest-get.jsp</source>
-            <destination>system/modules/ru.mrgrechkinn.opencms.photocontest/elements/mg-photocontest-get.jsp</destination>
-            <type>jsp</type>
-            <datelastmodified>Mon, 03 Feb 2014 14:00:55 GMT</datelastmodified>
-            <userlastmodified>Admin</userlastmodified>
-            <datecreated>Wed, 16 Dec 2015 14:46:04 GMT</datecreated>
-            <usercreated>Admin</usercreated>
-            <flags>0</flags>
-            <properties>
-                <property type="shared">
-                    <name>export</name>
-                    <value><![CDATA[false]]></value>
-                </property>
-            </properties>
-            <relations/>
-            <accesscontrol/>
-        </file>
 		<file>
 			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/i18n</destination>
 			<type>folder</type>
@@ -348,6 +352,67 @@
 			<usercreated>Admin</usercreated>
 			<flags>0</flags>
 			<properties/>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/resources/pics</destination>
+			<type>folder</type>
+			<uuidstructure>23401ba8-a518-11e5-b30b-40e23076d8ef</uuidstructure>
+			<datelastmodified>Thu, 17 Dec 2015 23:44:39 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Thu, 17 Dec 2015 23:44:39 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties/>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<source>system/modules/ru.mrgrechkinn.opencms.photocontest/resources/pics/not_voted.png</source>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/resources/pics/not_voted.png</destination>
+			<type>image</type>
+			<uuidstructure>3ec76044-a518-11e5-b30b-40e23076d8ef</uuidstructure>
+			<uuidresource>3ec76045-a518-11e5-b30b-40e23076d8ef</uuidresource>
+			<datelastmodified>Thu, 17 Dec 2015 23:45:25 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Thu, 17 Dec 2015 23:45:25 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties>
+				<property>
+					<name>Title</name>
+					<value><![CDATA[not_voted]]></value>
+				</property>
+				<property type="shared">
+					<name>image.size</name>
+					<value><![CDATA[w:22,h:20]]></value>
+				</property>
+			</properties>
+			<relations/>
+			<accesscontrol/>
+		</file>
+		<file>
+			<source>system/modules/ru.mrgrechkinn.opencms.photocontest/resources/pics/voted.png</source>
+			<destination>system/modules/ru.mrgrechkinn.opencms.photocontest/resources/pics/voted.png</destination>
+			<type>image</type>
+			<uuidstructure>3ecabba8-a518-11e5-b30b-40e23076d8ef</uuidstructure>
+			<uuidresource>3ecabba9-a518-11e5-b30b-40e23076d8ef</uuidresource>
+			<datelastmodified>Thu, 17 Dec 2015 23:45:25 GMT</datelastmodified>
+			<userlastmodified>Admin</userlastmodified>
+			<datecreated>Thu, 17 Dec 2015 23:45:25 GMT</datecreated>
+			<usercreated>Admin</usercreated>
+			<flags>0</flags>
+			<properties>
+				<property>
+					<name>Title</name>
+					<value><![CDATA[voted]]></value>
+				</property>
+				<property type="shared">
+					<name>image.size</name>
+					<value><![CDATA[w:22,h:20]]></value>
+				</property>
+			</properties>
 			<relations/>
 			<accesscontrol/>
 		</file>

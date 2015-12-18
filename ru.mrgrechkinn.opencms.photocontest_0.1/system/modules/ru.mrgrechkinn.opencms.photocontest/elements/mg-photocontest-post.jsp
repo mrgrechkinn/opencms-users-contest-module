@@ -86,10 +86,15 @@ try {
              System.out.println("Creating /.content/mg-photocontest/" + folderId);
              cms.createResource("/.content/mg-photocontest/" + folderId, CmsResourceTypeFolder.RESOURCE_TYPE_ID);
          }
-    
+         String extension = "";
+         int i = filename.lastIndexOf('.');
+         if (i > 0) {
+             extension = filename.substring(i+1);
+         }
+
          String newResname = cms.getRequestContext().getFileTranslator().translateResource("/.content/mg-photocontest/"
                                                                                          + folderId + "/"
-                                                                                         + filename);
+                                                                                         + UUID.randomUUID() + "." + extension);
          int resTypeId = OpenCms.getResourceManager().getDefaultTypeForName(filename).getTypeId();
          cms.createResource(newResname, resTypeId, bytes, properties);
     

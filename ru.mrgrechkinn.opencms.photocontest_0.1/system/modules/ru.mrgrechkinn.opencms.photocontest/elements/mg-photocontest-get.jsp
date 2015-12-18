@@ -4,18 +4,52 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="org.opencms.jsp.*" %>
-<% 
-  // Create a JSP action element
-  org.opencms.jsp.CmsJspActionElement cms = new CmsJspActionElement(pageContext, request, response);
+<%@ page import="java.util.*, java.sql.*,org.opencms.db.*,org.opencms.main.*"%>
+<%
+//Create a JSP action element
+org.opencms.jsp.CmsJspActionElement cms = new CmsJspActionElement(pageContext, request, response);
 
-  HttpServletRequest req = (HttpServletRequest)cms.getRequest();
+HttpServletRequest req = (HttpServletRequest)cms.getRequest();
 
-  String ipAddress = req.getHeader("X-FORWARDED-FOR");
-  if (ipAddress == null) {
-      ipAddress = req.getRemoteAddr();
-  }
-  System.out.println("ipAddress:" + ipAddress);
+String ipAddress = req.getHeader("X-FORWARDED-FOR");
+if (ipAddress == null) {
+   ipAddress = req.getRemoteAddr();
+}
+java.sql.Connection con = 
+OpenCms.getSqlManager().getConnection(CmsDbPool.getDefaultDbPoolName());
+Statement stmt = con.createStatement();
+String sql = "CREATE TABLE IF NOT EXISTS pc_vote ( " +
+        " userIp varchar(50) NOT NULL, " +
+        " resourceId varchar(50) NOT NULL, " + 
+        " PRIMARY KEY(userIp, resourceId))"; 
 
+stmt.executeUpdate(sql);
+stmt.close();
+
+if (request.getParameter("resourceId") != null) {
+System.out.println("save");
+
+stmt = con.createStatement();
+sql = "INSERT INTO pc_vote (userIp, resourceId) VALUES (\"" + ipAddress + "\",\"" + request.getParameter("resourceId") + "\");"; 
+stmt.executeUpdate(sql);
+stmt.close();
+con.close();
+return;
+}
+
+
+
+stmt = con.createStatement();
+ResultSet rs = stmt.executeQuery("SELECT resourceId FROM pc_vote WHERE userIp='" + ipAddress + "'");
+
+List<String> resources = new ArrayList<String>();
+while (rs.next()) {
+	resources.add(rs.getString(1));
+}
+rs.close();
+stmt.close();
+con.close();
+pageContext.setAttribute("resources", resources , pageContext.REQUEST_SCOPE); 
 %>
 <fmt:setLocale value="${cms.locale}" />
 <cms:bundle basename="ru.mrgrechkinn.opencms.photocontest.workplace">
@@ -171,6 +205,20 @@ String cap=new String(sb);
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
+    	jQuery('.voteButton').click(function(){
+            var resourceId = jQuery(this)[0].id;
+
+            jQuery.ajax
+            ({ 
+                url: '?resourceId=' + resourceId,
+                data: {},
+                type: 'get',
+                success: function(result)
+                {
+                    location.reload();
+                }
+            });
+        });
         jQuery(".fancybox-button").fancybox({
             prevEffect: 'none',
             nextEffect: 'none',
@@ -216,7 +264,7 @@ String cap=new String(sb);
                 <div class="webform_wrapper">
                     <div class="webform_button">
                     <input type="hidden" value="true" name="n"> 
-                    <input type="submit" value="Учавствовать" class="formbutton submitbutton">  
+                    <input type="submit" value="Участвовать" class="formbutton submitbutton">  
                     </div>
                 </div>
             </form>
@@ -240,8 +288,21 @@ String cap=new String(sb);
                             <div style="font-weight: bold;">${res.property['pcFirstName']} ${res.property['pcLastName']}</div>
                             <div>${res.property['pcPicTitle']}</div>
                         </div>
-                        <div style="cursor:pointer;"><img style="float:left; margin-right: 10px;" src="<cms:link>%(link.weak:/system/modules/ru.mrgrechkinn.opencms.photocontest/resources/pics/not_voted.png)</cms:link>"><div style="font-weight: bold; color: red; text-decoration: underline;">Голосовать</div></div>
-                        <%--<div><img style="float:left; margin-right: 10px;" src="<cms:link>%(link.weak:/system/modules/ru.mrgrechkinn.opencms.photocontest/resources/pics/voted.png)</cms:link>"><div style="font-weight: bold;">Голос учтен</div></div> --%>
+                        <c:set var="voted" value="false" />
+                        <c:forEach var="item" items="${resources}">
+                            <c:if test="${item eq res.resource.resourceId}">
+                                <c:set var="voted" value="true" />
+                            </c:if>
+                        </c:forEach>
+                        <c:choose>
+                            <c:when test="${not voted}">
+                                <div style="cursor:pointer;" id="${res.resource.resourceId}" class="voteButton"><img style="float:left; margin-right: 10px;" src="<cms:link>%(link.weak:/system/modules/ru.mrgrechkinn.opencms.photocontest/resources/pics/not_voted.png)</cms:link>"><div style="font-weight: bold; color: red; text-decoration: underline;">Голосовать</div></div>
+                            </c:when>
+                            <c:otherwise>
+                                <div><img style="float:left; margin-right: 10px;" src="<cms:link>%(link.weak:/system/modules/ru.mrgrechkinn.opencms.photocontest/resources/pics/voted.png)</cms:link>"><div style="font-weight: bold;">Голос учтен</div></div>
+                            </c:otherwise>
+                            </c:choose>
+                        
                     </div>
 
                     <c:if test="${info.resultIndex % itemCount == 0 || info.lastResult}">
@@ -251,6 +312,10 @@ String cap=new String(sb);
             </cms:resourceload>
         </c:otherwise>
     </c:choose>
+    <script type="text/javascript">
+    
+
+    </script>
 </div>
 
     </c:otherwise>
